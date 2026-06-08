@@ -16,15 +16,20 @@ export function ToolCard({ tool }: ToolCardProps) {
   if (tool.category.includes('Build') || tool.category.includes('Total') || tool.category.includes('Maintenance') || tool.category.includes('Integration')) tagColor = 'bg-amber-50 text-[#92400E]';
 
   return (
-    <div className="bg-white border border-[#E5E7EB] p-4 rounded-lg flex flex-col justify-between hover:shadow-lg transition-shadow group h-full">
+    <article className="bg-white border border-[#E5E7EB] p-4 rounded-lg flex flex-col justify-between hover:shadow-lg transition-shadow group h-full">
       <div className="flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-2">
-          <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded ${tagColor}`}>
+          <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded ${tagColor}`}>
             {tool.category}
           </span>
           <button
-            onClick={() => toggleFavorite(tool.id)}
-            className={`transition-colors ${
+            onClick={() => {
+              toggleFavorite(tool.id);
+              if (typeof window.gtag === 'function') {
+                window.gtag('event', 'click', { element: 'favorite_button', tool_id: tool.id });
+              }
+            }}
+            className={`p-2 -mr-2 -mt-2 min-h-[48px] min-w-[48px] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] rounded-full ${
               favorite ? 'text-red-500' : 'text-gray-300 hover:text-red-500'
             }`}
             aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
@@ -43,14 +48,22 @@ export function ToolCard({ tool }: ToolCardProps) {
       </div>
       
       <div className="mt-4 flex items-center justify-between border-t border-transparent pt-2">
-        <span className="text-[10px] font-mono text-gray-400">RESULT: {tool.primaryOutcome}</span>
+        <span className="text-[10px] font-mono text-gray-400" aria-label={`Primary outcome: ${tool.primaryOutcome}`}>
+          RESULT: {tool.primaryOutcome}
+        </span>
         <Link 
           to={`/tool/${tool.id}`}
-          className="text-[10px] font-bold uppercase bg-[#1A1A1A] text-white px-3 py-1.5 rounded hover:bg-black transition-colors"
+          onClick={() => {
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'click', { element: 'launch_tool_button', tool_id: tool.id });
+            }
+          }}
+          className="text-[10px] font-bold uppercase bg-[#1A1A1A] text-white px-4 py-3 min-h-[48px] rounded hover:bg-black transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1A1A1A]"
+          aria-label={`Launch ${tool.title}`}
         >
           Launch
         </Link>
       </div>
-    </div>
+    </article>
   );
 }

@@ -2,13 +2,18 @@ import { tools } from '../data';
 import { ToolCard } from '../components/ToolCard';
 import { useFavorites } from '../hooks/useFavorites';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 
 export function Favorites() {
   const { favorites } = useFavorites();
   const favoriteTools = tools.filter(tool => favorites.includes(tool.id));
 
   return (
-    <div className="flex-grow py-12 px-8 bg-[#F9FAF8]">
+    <div className="flex-grow py-12 px-4 sm:px-8 bg-[#F9FAF8]">
+      <SEO 
+        title="My Favorites | Solve | Rural Utility Cost" 
+        description="Access your saved IoT and automation cost estimation tools." 
+      />
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 pb-6 border-b border-[#E5E7EB]">
           <h1 className="text-3xl md:text-4xl font-black text-[#1A1A1A] tracking-tighter uppercase mb-4">My Favorites</h1>

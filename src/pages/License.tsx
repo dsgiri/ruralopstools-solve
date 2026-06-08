@@ -1,6 +1,12 @@
+import { SEO } from '../components/SEO';
+
 export function License() {
   return (
-    <div className="flex-grow bg-[#F9FAF8] py-16 px-8">
+    <div className="flex-grow bg-[#F9FAF8] py-16 px-4 sm:px-8">
+      <SEO 
+        title="Open Source License | Solve | Rural Utility Cost" 
+        description="Open source MIT license definitions for the Solve planning application." 
+      />
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-black text-[#1A1A1A] uppercase tracking-tighter mb-4">Open Source License</h1>

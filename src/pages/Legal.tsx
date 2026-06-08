@@ -1,6 +1,12 @@
+import { SEO } from '../components/SEO';
+
 export function Legal() {
   return (
-    <div className="flex-grow bg-[#F9FAF8] py-16 px-8">
+    <div className="flex-grow bg-[#F9FAF8] py-16 px-4 sm:px-8">
+      <SEO 
+        title="Legal & Disclaimer | Solve | Rural Utility Cost" 
+        description="Legal agreements, definitions, and model estimation disclaimers for the Solve planning hub." 
+      />
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-black text-[#1A1A1A] uppercase tracking-tighter mb-4">Legal & Disclaimer</h1>

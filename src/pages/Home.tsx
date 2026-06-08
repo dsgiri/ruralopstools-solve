@@ -1,6 +1,8 @@
 import { tools } from '../data';
 import { ToolCard } from '../components/ToolCard';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
+import { AdContainer } from '../components/AdContainer';
 
 export function Home() {
   const featuredTools = tools.slice(0, 3);
@@ -8,8 +10,14 @@ export function Home() {
 
   return (
     <div className="flex flex-col flex-grow bg-[#F9FAF8]">
+      <SEO 
+        title="Solve | IoT App Cost Estimator & Rural Utility Calculator" 
+        description="Estimate costs for IoT projects, farm automation, and sensor deployments. Calculate Total Cost of Ownership across hardware, cloud, and maintenance." 
+        keywords="IoT cost estimator, sensor network budgeting, rural utility cost, farm automation cost, build vs buy software"
+      />
+      
       {/* Hero Section */}
-      <header className="px-8 py-12 bg-[#1E3A8A] text-white shrink-0">
+      <header className="px-4 sm:px-8 py-12 bg-[#1E3A8A] text-white shrink-0">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase leading-none mb-4">
             IoT & Automation Cost Hub
@@ -19,10 +27,21 @@ export function Home() {
             within the Rural Utility Cost ecosystem. Practical tech for smart agriculture.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#featured" className="bg-[#1A1A1A] hover:bg-black text-white text-[12px] font-bold uppercase tracking-widest px-6 py-3 rounded transition-colors inline-flex items-center">
+            <a 
+              href="#featured" 
+              className="bg-[#1A1A1A] hover:bg-black text-white text-[12px] font-bold uppercase tracking-widest px-6 py-3 min-h-[48px] rounded transition-colors inline-flex items-center justify-center text-center"
+              onClick={() => {
+                if (typeof window.gtag === 'function') {
+                  window.gtag('event', 'click', { element: 'start_estimating_hero_btn' });
+                }
+              }}
+            >
               Start Estimating
             </a>
-            <Link to="/about" className="bg-transparent text-white border border-white text-[12px] font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-white/10 transition-colors">
+            <Link 
+              to="/about" 
+              className="bg-transparent text-white border border-white text-[12px] font-bold uppercase tracking-widest px-6 py-3 min-h-[48px] rounded hover:bg-white/10 transition-colors inline-flex items-center justify-center text-center"
+            >
               Read Methodology
             </Link>
           </div>
@@ -44,6 +63,11 @@ export function Home() {
           </div>
         </div>
       </section>
+      
+      {/* Mid-page Responsive Ad placement */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 mb-4">
+        <AdContainer slotId="IN_CONTENT_SLOT_1" />
+      </div>
 
       {/* All Tools Grid */}
       <section className="py-8 pb-20">

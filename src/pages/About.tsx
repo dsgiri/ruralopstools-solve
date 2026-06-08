@@ -1,6 +1,13 @@
+import { SEO } from '../components/SEO';
+
 export function About() {
   return (
-    <div className="flex-grow bg-[#F9FAF8] py-16 px-8">
+    <div className="flex-grow bg-[#F9FAF8] py-16 px-4 sm:px-8">
+      <SEO 
+        title="About Solve | Rural Utility Cost" 
+        description="Learn about the methodology behind Solve, the IoT and automation cost hub for Rural Utility Cost." 
+        keywords="rural utility cost, IoT estimation, farm automation, capEx opEx"
+      />
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-black text-[#1A1A1A] uppercase tracking-tighter mb-4">About Solve</h1>
