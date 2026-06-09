@@ -47,7 +47,7 @@ export default function App() {
         Skip to main content
       </a>
 
-      <div className="min-h-screen flex flex-col bg-[#F9FAF8] font-sans text-[#1A1A1A] overflow-x-hidden w-full">
+      <div className="min-h-screen flex flex-col font-sans text-stone-900 overflow-x-hidden w-full">
         <Navigation />
         
         {/* Top Header Ad */}

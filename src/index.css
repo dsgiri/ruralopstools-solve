@@ -1,8 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-display: "Zilla Slab", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    background-color: #F6F4F0;
+    background-image: radial-gradient(#d6d3d1 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: #292524;
+  }
+}
+
+@layer utilities {
+  .tactile-card {
+    background-color: #ffffff;
+    border: 3px solid #292524;
+    box-shadow: 6px 6px 0px #292524;
+    transition: all 0.2s ease;
+  }
+  .tactile-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #292524;
+  }
+  .tactile-btn {
+    border: 3px solid #292524;
+    box-shadow: 4px 4px 0px #292524;
+    transition: all 0.1s ease;
+    font-weight: bold;
+  }
+  .tactile-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px #292524;
+  }
+  .notepad {
+    background-color: #FEF9C3;
+    background-image: repeating-linear-gradient(transparent, transparent 31px, #e5e5e5 31px, #e5e5e5 32px);
+    line-height: 32px;
+    border: 2px solid #292524;
+  }
 }

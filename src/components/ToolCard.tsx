@@ -18,21 +18,26 @@ export function ToolCard({ tool }: ToolCardProps) {
   if (tool.category.includes('Build') || tool.category.includes('Total') || tool.category.includes('Maintenance') || tool.category.includes('Integration')) tagColor = 'bg-amber-50 text-[#92400E]';
 
   return (
-    <article className="bg-white border border-[#E5E7EB] p-4 rounded-lg flex flex-col justify-between hover:shadow-lg transition-shadow group h-full">
+    <article className="tactile-card p-4 sm:p-6 flex flex-col justify-between group h-full cursor-pointer relative">
       <div className="flex-grow flex flex-col">
-        <div className="flex justify-between items-start mb-2">
-          <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded ${tagColor}`}>
-            {tool.category}
-          </span>
+        <div className="flex items-start justify-between mb-4 border-b-2 border-stone-200 pb-4">
+          <div className="flex items-center gap-2">
+            <span className={`w-10 h-10 border-2 border-stone-800 flex items-center justify-center text-lg shadow-[2px_2px_0px_#292524] ${tagColor}`}>
+              ⚙️
+            </span>
+            <span className="font-mono text-[10px] font-bold text-stone-500 uppercase tracking-widest">{tool.category}</span>
+          </div>
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
               toggleFavorite(tool.id);
               if (typeof window.gtag === 'function') {
                 window.gtag('event', 'click', { element: 'favorite_button', tool_id: tool.id });
               }
             }}
-            className={`p-2 -mr-2 -mt-2 min-h-[48px] min-w-[48px] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] rounded-full ${
-              favorite ? 'text-red-500' : 'text-gray-300 hover:text-red-500'
+            className={`transition-colors focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] rounded-full z-10 ${
+              favorite ? 'text-red-500' : 'text-stone-300 hover:text-red-500'
             }`}
             aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
             title={favorite ? 'Remove from favorites' : 'Add to favorites'}
@@ -41,29 +46,29 @@ export function ToolCard({ tool }: ToolCardProps) {
             ❤
           </button>
         </div>
-        <h3 className="font-bold text-base leading-tight mb-1 group-hover:text-[#1E3A8A] transition-colors">
+        <h3 className="text-xl font-bold mb-2 font-display text-stone-900 group-hover:text-blue-600 transition-colors">
           {tool.title}
         </h3>
-        <p className="text-xs text-gray-500 line-clamp-2 italic mb-4 flex-grow">
+        <p className="text-stone-600 text-sm font-medium mb-6 line-clamp-3">
           {tool.description}
         </p>
       </div>
       
-      <div className="mt-4 flex items-center justify-between border-t border-transparent pt-2">
-        <span className="text-[10px] font-mono text-gray-400" aria-label={`Primary outcome: ${tool.primaryOutcome}`}>
-          RESULT: {tool.primaryOutcome}
+      <div className="mt-2 flex items-center justify-between">
+        <span className="text-[10px] font-mono font-bold text-orange-600" aria-label={`Primary outcome: ${tool.primaryOutcome}`}>
+          {tool.primaryOutcome}
         </span>
         <Link 
           to={`/tool/${tool.id}`}
-          onClick={() => {
+          onClick={(e) => {
             if (typeof window.gtag === 'function') {
               window.gtag('event', 'click', { element: 'launch_tool_button', tool_id: tool.id });
             }
           }}
-          className="text-[10px] font-bold uppercase bg-[#1A1A1A] text-white px-4 py-3 min-h-[48px] rounded hover:bg-black transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1A1A1A]"
-          aria-label={`Launch ${tool.title}`}
+          className="font-mono font-bold text-sm text-orange-600 flex items-center gap-2 z-10 relative after:absolute after:inset-0"
+          aria-label={`Open Manual for ${tool.title}`}
         >
-          Launch
+          Open Tool <span className="group-hover:translate-x-2 transition-transform">→</span>
         </Link>
       </div>
     </article>

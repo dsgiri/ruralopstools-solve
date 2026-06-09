@@ -32,19 +32,19 @@ export function Portfolio() {
   }, [sites]);
 
   return (
-    <div className="flex flex-col flex-grow bg-[#F9FAF8]">
+    <div className="flex flex-col flex-grow">
       <SEO 
         title="Network Portfolio | Rural Utility Cost" 
         description="Explore the full network of planning, budgeting, and estimation tools in the Rural Utility Cost ecosystem." 
       />
       
       {/* Header */}
-      <header className="px-4 sm:px-8 py-12 bg-[#1E3A8A] text-white shrink-0">
+      <header className="px-6 md:px-8 py-12 bg-stone-900 border-b-4 border-stone-800 text-white shrink-0">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase leading-none mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black font-display tracking-tight leading-none mb-4">
             Ecosystem Network
           </h1>
-          <p className="max-w-2xl text-sm sm:text-base text-blue-100 font-medium">
+          <p className="max-w-2xl text-base text-stone-400 font-medium pb-4">
             The Rural Utility Cost platform consists of interconnected subdomains, 
             each dedicated to a specific area of agricultural and rural cost modeling.
           </p>
@@ -52,58 +52,56 @@ export function Portfolio() {
       </header>
 
       {/* Directory Content */}
-      <section className="py-12 px-4 sm:px-8 flex-grow">
+      <section className="py-16 px-6 md:px-8 flex-grow">
         <div className="max-w-7xl mx-auto">
           
           <div className="space-y-16">
             {groupedSites.map(({ category, sites }) => (
               <div key={category} className="scroll-mt-8">
-                <div className="flex items-center gap-4 mb-6">
-                  <h2 className="text-2xl font-black uppercase tracking-tighter text-[#1A1A1A]">{category}</h2>
-                  <div className="h-px bg-[#E5E7EB] flex-grow"></div>
+                <div className="flex items-center gap-4 mb-8">
+                  <h2 className="text-2xl font-black font-display uppercase tracking-tight text-stone-900">{category}</h2>
+                  <div className="h-1 bg-stone-200 flex-grow"></div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {sites.map(site => (
                     <article 
                       key={site.name} 
-                      className={`bg-white border rounded-lg p-6 flex flex-col justify-between transition-shadow hover:shadow-md ${
+                      className={`tactile-card p-6 flex flex-col justify-between group ${
                         site.status.toLowerCase() === 'retired' 
-                          ? 'border-gray-200 opacity-60' 
-                          : 'border-[#E5E7EB]'
+                          ? 'opacity-60 grayscale' 
+                          : ''
                       }`}
                     >
                       <div className="mb-4">
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-xl font-bold text-[#1A1A1A]">
+                        <div className="flex justify-between items-start mb-4">
+                          <h3 className="font-bold font-display text-xl leading-tight text-stone-900">
                             {site.name}
                           </h3>
                           {site.status.toLowerCase() === 'retired' && (
-                            <span className="text-[10px] font-bold uppercase px-2 py-1 rounded bg-gray-100 text-gray-500">
-                              Retired
-                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest bg-stone-100 text-stone-500 border-2 border-stone-300 px-2 py-0.5 shadow-[2px_2px_0px_#d6d3d1] -rotate-2">Retired</span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 mb-4 h-10 line-clamp-2">
+                        <p className="text-sm font-medium text-stone-600 line-clamp-3 h-14">
                           {site.description}
                         </p>
                       </div>
                       
-                      <div className="mt-auto pt-4 border-t border-[#F1F3F0]">
+                      <div className="mt-auto border-t-2 border-stone-100 pt-4">
                         {site.status.toLowerCase() === 'retired' ? (
-                          <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Offline</span>
+                          <span className="text-xs font-mono font-bold uppercase tracking-widest text-stone-400">Offline</span>
                         ) : (
                           <a 
                             href={`https://${site.url}`} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-[11px] font-bold uppercase tracking-widest text-[#1E3A8A] hover:text-[#4D7C0F] transition-colors inline-block"
+                            className="font-mono font-bold text-sm text-orange-600 flex items-center gap-2 group-hover:text-orange-500 transition-colors inline-block"
                             aria-label={`Visit ${site.name} at ${site.url}`}
                           >
-                            Visit Site &rarr;
+                            Visit Site <span className="group-hover:translate-x-2 transition-transform inline-block">→</span>
                           </a>
                         )}
-                        <p className="mt-2 text-[10px] font-mono text-gray-400">
+                        <p className="mt-2 text-xs font-mono text-stone-400">
                           {site.url}
                         </p>
                       </div>
