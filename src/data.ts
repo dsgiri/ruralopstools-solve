@@ -1,6 +1,7 @@
 import { Tool, Category } from './types';
 
 export const categories: Category[] = [
+  { id: 'operations-planning', name: 'Operations & Logs', description: 'Tools for planning checks, logging faults, and managing recurring tasks.' },
   { id: 'iot-app-cost', name: 'IoT app cost', description: 'Estimate costs for custom Internet of Things software.' },
   { id: 'automation-project', name: 'Automation project cost', description: 'Budget for end-to-end automation deployments.' },
   { id: 'sensor-device', name: 'Sensor / device budgeting', description: 'Plan capital expenditures for hardware fleets.' },
@@ -264,5 +265,234 @@ export const tools: Tool[] = [
         }
       };
     }
+  },
+  {
+    id: 'water-check-planner',
+    title: 'Water Check OS & Alert Planner',
+    description: 'Calculate the true cost of manual water checks and plan automated alert thresholds.',
+    category: 'Operations & Logs',
+    primaryOutcome: 'Annual Manual Check Cost',
+    fields: [
+      { id: 'waterSites', label: 'Number of Water Sites', type: 'number', defaultValue: 5 },
+      { id: 'timePerSite', label: 'Drive/Check Time per Site (mins)', type: 'number', defaultValue: 15 },
+      { id: 'checksPerWeek', label: 'Checks per Week', type: 'number', defaultValue: 3 },
+      { id: 'laborRate', label: 'Labor Rate ($/hr)', type: 'number', defaultValue: 25 }
+    ],
+    calcFn: (v) => {
+      const sites = Number(v.waterSites) || 0;
+      const mins = Number(v.timePerSite) || 0;
+      const freq = Number(v.checksPerWeek) || 0;
+      const rate = Number(v.laborRate) || 0;
+      
+      const hoursPerWeek = (sites * mins * freq) / 60;
+      const costPerWeek = hoursPerWeek * rate;
+      const annualCost = costPerWeek * 52;
+      
+      return {
+        result: formatCurrency(annualCost) + '/yr',
+        breakdown: {
+          'Weekly Labor Hours': hoursPerWeek.toFixed(1) + ' hrs',
+          'Weekly Cost': formatCurrency(costPerWeek)
+        }
+      };
+    },
+    howItWorks: [
+      'Enter the number of troughs, tanks, or water sites you check.',
+      'Estimate the average time it takes to drive to and inspect one site.',
+      'Input how often these are checked weekly and your internal labor rate.',
+      'The calculator reveals the hidden annual cost of manual water monitoring.'
+    ],
+    definitions: [
+      { term: 'Water Site', definition: 'Any stock tank, trough, or remote pump requiring visual inspection.' },
+      { term: 'Manual Check Cost', definition: 'The operational expense of driving to a site just to verify water presence.' }
+    ],
+    faqs: [
+      { question: 'Why does manual checking cost so much?', answer: 'Drive time and labor hours add up quickly over a year, often exceeding the cost of automated sensors within months.' }
+    ]
+  },
+  {
+    id: 'pump-trouble-logger',
+    title: 'Pump Trouble Logger & Risk Estimator',
+    description: 'Track pump symptoms to estimate failure risk and potential replacement costs before a total breakdown.',
+    category: 'Operations & Logs',
+    primaryOutcome: 'Failure Risk Status',
+    fields: [
+      { id: 'pumpAge', label: 'Pump Age (Years)', type: 'number', defaultValue: 5 },
+      { id: 'symptom', label: 'Current Symptom', type: 'select', options: ['None', 'Odd Sound / Vibration', 'Short Cycling', 'Low Pressure', 'Tripping Breaker'], defaultValue: 'Short Cycling' },
+      { id: 'replacementCost', label: 'Estimated Replacement Cost ($)', type: 'number', defaultValue: 3500 }
+    ],
+    calcFn: (v) => {
+      const age = Number(v.pumpAge) || 0;
+      const symptom = v.symptom as string;
+      const cost = Number(v.replacementCost) || 0;
+      
+      let risk = 'LOW';
+      let multiplier = 0;
+      
+      if (symptom === 'Odd Sound / Vibration') { risk = 'ELEVATED'; multiplier = 0.3; }
+      else if (symptom === 'Short Cycling') { risk = 'HIGH'; multiplier = 0.6; }
+      else if (symptom === 'Low Pressure') { risk = 'HIGH'; multiplier = 0.7; }
+      else if (symptom === 'Tripping Breaker') { risk = 'CRITICAL'; multiplier = 0.9; }
+      else if (age > 10) { risk = 'ELEVATED'; multiplier = 0.2; }
+      
+      const riskExposure = cost * multiplier;
+      
+      return {
+        result: risk,
+        breakdown: {
+          'Financial Risk Exposure': formatCurrency(riskExposure),
+          'Full Replacement Cost': formatCurrency(cost)
+        }
+      };
+    },
+    howItWorks: [
+      'Select the age of your pump and any current symptoms.',
+      'Input the cost to replace the pump (hardware and labor).',
+      'The tool calculates a risk status and the financial exposure you carry by delaying maintenance.'
+    ],
+    definitions: [
+      { term: 'Short Cycling', definition: 'When a pump turns on and off too rapidly, usually indicating a pressure tank issue.' },
+      { term: 'Financial Risk Exposure', definition: 'The estimated cost probability of a sudden failure based on current symptoms.' }
+    ],
+    faqs: [
+      { question: 'What should I do if the risk is Critical?', answer: 'Call a technician immediately. Tripping breakers or severe short cycling can destroy the pump motor quickly.' }
+    ]
+  },
+  {
+    id: 'remote-inspection-proof',
+    title: 'Remote Inspection Proof Tool',
+    description: 'Calculate the value of an audit trail for remote property checks and contractor accountability.',
+    category: 'Operations & Logs',
+    primaryOutcome: 'Annual Accountability Value',
+    fields: [
+      { id: 'remoteSites', label: 'Remote Sites to Check', type: 'number', defaultValue: 3 },
+      { id: 'visitsPerMonth', label: 'Contractor Visits per Month', type: 'number', defaultValue: 4 },
+      { id: 'costPerVisit', label: 'Cost per Visit ($)', type: 'number', defaultValue: 150 },
+      { id: 'disputeRate', label: 'Disputed / Missed Check Rate (%)', type: 'range', min: 0, max: 50, step: 1, defaultValue: 10 }
+    ],
+    calcFn: (v) => {
+      const sites = Number(v.remoteSites) || 0;
+      const visits = Number(v.visitsPerMonth) || 0;
+      const cost = Number(v.costPerVisit) || 0;
+      const rate = Number(v.disputeRate) || 0;
+      
+      const totalVisits = sites * visits * 12;
+      const annualSpend = totalVisits * cost;
+      const riskValue = annualSpend * (rate / 100);
+      
+      return {
+        result: formatCurrency(riskValue) + '/yr',
+        breakdown: {
+          'Total Annual Spend': formatCurrency(annualSpend),
+          'Value of Verification (ROI)': formatCurrency(riskValue)
+        }
+      };
+    },
+    howItWorks: [
+      'Enter how many remote locations require third-party or employee verification.',
+      'Input the frequency and cost of these visits.',
+      'Estimate how often a check is missed or disputed.',
+      'The calculator outputs the direct financial value of implementing NFC/QR proof-of-presence systems.'
+    ],
+    definitions: [
+      { term: 'Proof-of-Presence', definition: 'Using a digital scan (like NFC or QR) to cryptographically prove a person was at a specific physical location.' }
+    ],
+    faqs: [
+      { question: 'How do I implement this?', answer: 'You can use rugged NFC tags at gates or tanks. When contractors tap them with their phone, it logs a timestamp and GPS coordinate.' }
+    ]
+  },
+  {
+    id: 'freeze-event-planner',
+    title: 'Freeze Event Planner',
+    description: 'Assess vulnerability and plan winter operations before a severe weather event strikes.',
+    category: 'Operations & Logs',
+    primaryOutcome: 'Freeze Vulnerability Score',
+    fields: [
+      { id: 'exposedLines', label: 'Exposed Water Lines (ft)', type: 'number', defaultValue: 100 },
+      { id: 'unheatedTroughs', label: 'Unheated Troughs', type: 'number', defaultValue: 4 },
+      { id: 'backupPower', label: 'Backup Power Available', type: 'select', options: ['Yes - Automatic', 'Yes - Manual', 'No'], defaultValue: 'No' },
+      { id: 'tempDrop', label: 'Expected Temp Drop (°F)', type: 'number', defaultValue: 15 }
+    ],
+    calcFn: (v) => {
+      const lines = Number(v.exposedLines) || 0;
+      const troughs = Number(v.unheatedTroughs) || 0;
+      const power = v.backupPower as string;
+      const tempDrop = Number(v.tempDrop) || 0;
+      
+      let score = 0;
+      score += lines * 0.1;
+      score += troughs * 5;
+      
+      if (power === 'No') score += 30;
+      else if (power === 'Yes - Manual') score += 10;
+      
+      if (tempDrop <= 20) score += 10;
+      else if (tempDrop <= 10) score += 25;
+      else if (tempDrop <= 0) score += 50;
+      
+      let vulnerability = 'LOW';
+      if (score > 80) vulnerability = 'CRITICAL';
+      else if (score > 50) vulnerability = 'HIGH';
+      else if (score > 25) vulnerability = 'MODERATE';
+      
+      return {
+        result: vulnerability,
+        breakdown: {
+          'Vulnerability Points': score.toFixed(0),
+          'Action Required': score > 50 ? 'Immediate Prep' : 'Standard Monitoring'
+        }
+      };
+    },
+    howItWorks: [
+      'Input the length of exposed plumbing and number of unheated water sources.',
+      'Indicate your backup power situation and the forecasted minimum temperature.',
+      'The tool outputs a vulnerability score to prioritize your winterization tasks.'
+    ],
+    definitions: [
+      { term: 'Vulnerability Score', definition: 'A weighted metric estimating the likelihood of infrastructure damage during a hard freeze.' }
+    ],
+    faqs: [
+      { question: 'Why does backup power matter for freezes?', answer: 'Many well pumps and trough heaters require electricity. Losing power during a freeze accelerates freezing in pipes and tanks.' }
+    ]
+  },
+  {
+    id: 'fence-fault-tracker',
+    title: 'Fence Fault Tracker & Cost Estimator',
+    description: 'Track electric fence faults and estimate the true cost of recurring perimeter escapes.',
+    category: 'Operations & Logs',
+    primaryOutcome: 'Annual Fault Cost',
+    fields: [
+      { id: 'perimeterLength', label: 'Perimeter Length (Miles)', type: 'number', defaultValue: 5 },
+      { id: 'faultsPerMonth', label: 'Average Faults per Month', type: 'number', defaultValue: 2 },
+      { id: 'timeToFind', label: 'Time to Find/Fix (Hours)', type: 'number', defaultValue: 3 },
+      { id: 'laborRate', label: 'Labor Rate ($/hr)', type: 'number', defaultValue: 25 }
+    ],
+    calcFn: (v) => {
+      const faults = Number(v.faultsPerMonth) || 0;
+      const hours = Number(v.timeToFind) || 0;
+      const rate = Number(v.laborRate) || 0;
+      
+      const monthlyCost = faults * hours * rate;
+      const annualCost = monthlyCost * 12;
+      
+      return {
+        result: formatCurrency(annualCost) + '/yr',
+        breakdown: {
+          'Annual Hours Spent': (faults * hours * 12) + ' hrs',
+          'Monthly Labor Drain': formatCurrency(monthlyCost)
+        }
+      };
+    },
+    howItWorks: [
+      'Enter the number of faults you experience monthly.',
+      'Estimate how long it takes to walk the line, find the short, and fix it.',
+      'The calculator reveals how much labor capital is wasted on manual fence walking compared to automated fault monitors.'
+    ],
+    definitions: [
+      { term: 'Fault', definition: 'A short in the electric fence caused by weeds, fallen branches, or broken insulators dropping the voltage.' }
+    ],
+    faqs: [
+      { question: 'Can this be automated?', answer: 'Yes, fence voltage monitors can alert you instantly when voltage drops, and some can even divide the fence into zones to pinpoint the fault location.' }
+    ]
   }
 ];
