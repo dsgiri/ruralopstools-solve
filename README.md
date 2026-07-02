@@ -4,7 +4,7 @@ Welcome to **Solve**, a subdomain of the RuralUtilityCost ecosystem. This platfo
 
 ## Overview
 Solve is designed for agricultural professionals, farm managers, and rural utility users who need practical tools without the fluff. The platform is organized into three main areas:
-1. **The Math**: Simple, localized scratchpad calculators to estimate waste on water pumps, pipes, fences, and power systems.
+1. **The Math & Operations Planning**: Simple, localized scratchpad calculators to estimate waste on water pumps, pipes, fences, and power systems. Also includes operational planners like **Water Check OS**, **Pump Trouble Logger**, **Freeze Event Planner**, and **Fence Fault Tracker**.
 2. **The Tool Wall**: A catalog of rugged, "snap-on" DIY hardware monitors (PulseGuard, FlowWatch, GateLog, etc.).
 3. **My Shed**: A digital logbook to track active sensors, asset health, and compliance.
 
