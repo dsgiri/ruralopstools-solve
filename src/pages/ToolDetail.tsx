@@ -3,7 +3,8 @@ import { tools } from '../data';
 import { useFavorites } from '../hooks/useFavorites';
 import { SEO } from '../components/SEO';
 import { CalculatorDisclaimer } from '../components/CalculatorDisclaimer';
-import { useState, useEffect } from 'react';
+import { ToolCard } from '../components/ToolCard';
+import React, { useState, useEffect } from 'react';
 
 export function ToolDetail() {
   const { id } = useParams<{ id: string }>();
@@ -48,6 +49,22 @@ export function ToolDetail() {
     if (tool.calcFn) {
       setCalculation(tool.calcFn(formValues));
       setIsCompiled(true);
+    }
+  };
+
+  const relatedTools = tools.filter(t => t.category === tool.category && t.id !== tool.id).slice(0, 2);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: tool.title,
+        text: tool.description,
+        url: window.location.href,
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
     }
   };
 
@@ -174,6 +191,101 @@ export function ToolDetail() {
             
             <CalculatorDisclaimer className="!mt-8 shadow-[4px_4px_0px_#292524] border-2 border-stone-800 bg-[#FEF9C3]" />
           </div>
+
+        </div>
+
+        {/* Below the Fold & Trust Elements */}
+        <div className="mt-20 max-w-4xl border-t-4 border-stone-800 pt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            {/* Supporting Context */}
+            <div className="space-y-12">
+              <section>
+                <h2 className="font-display font-bold text-2xl uppercase tracking-widest text-stone-900 mb-6">How It Works</h2>
+                {tool.howItWorks && tool.howItWorks.length > 0 ? (
+                  <ul className="space-y-3 list-disc pl-5 text-stone-600 font-medium">
+                    {tool.howItWorks.map((item, idx) => (
+                      <li key={idx} className="pl-2">{item}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-stone-500 italic">This calculator uses standard industry heuristics and user inputs to formulate an estimation.</p>
+                )}
+              </section>
+
+              <section>
+                <h2 className="font-display font-bold text-2xl uppercase tracking-widest text-stone-900 mb-6">Definitions</h2>
+                {tool.definitions && tool.definitions.length > 0 ? (
+                  <dl className="space-y-4">
+                    {tool.definitions.map((def, idx) => (
+                      <div key={idx} className="border-l-4 border-orange-500 pl-4">
+                        <dt className="font-bold font-mono text-stone-900 text-sm uppercase">{def.term}</dt>
+                        <dd className="text-stone-600 mt-1 text-sm">{def.definition}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                ) : (
+                  <p className="text-stone-500 italic">No specific definitions required for this tool.</p>
+                )}
+              </section>
+            </div>
+
+            {/* Trust and Engagement Elements */}
+            <div className="space-y-12">
+              <section>
+                <h2 className="font-display font-bold text-2xl uppercase tracking-widest text-stone-900 mb-6">FAQ</h2>
+                {tool.faqs && tool.faqs.length > 0 ? (
+                  <div className="space-y-4">
+                    {tool.faqs.map((faq, idx) => (
+                      <div key={idx} className="border-2 border-stone-800 bg-white">
+                        <button 
+                          onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                          className="w-full text-left px-4 py-3 font-bold font-mono text-sm text-stone-900 uppercase flex justify-between items-center focus:outline-none"
+                        >
+                          {faq.question}
+                          <span className="text-orange-500">{openFaq === idx ? '−' : '+'}</span>
+                        </button>
+                        {openFaq === idx && (
+                          <div className="px-4 pb-4 pt-1 text-stone-600 text-sm border-t-2 border-stone-100">
+                            {faq.answer}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-stone-500 italic">No frequently asked questions available.</p>
+                )}
+              </section>
+
+              <section className="bg-stone-50 border-4 border-stone-800 p-6 shadow-[4px_4px_0px_#292524]">
+                <h2 className="font-display font-bold text-lg uppercase tracking-widest text-stone-900 mb-4">Share / Save</h2>
+                <div className="flex flex-col gap-3">
+                  <button onClick={() => toggleFavorite(tool.id)} className="tactile-btn w-full bg-white border-2 border-stone-800 py-2 px-4 font-bold font-mono text-sm uppercase text-stone-900 hover:bg-stone-100">
+                    {favorite ? 'Remove from My Shed' : 'Save to My Shed'}
+                  </button>
+                  <button onClick={handleShare} className="tactile-btn w-full bg-white border-2 border-stone-800 py-2 px-4 font-bold font-mono text-sm uppercase text-stone-900 hover:bg-stone-100">
+                    Share Link / Email
+                  </button>
+                  <button onClick={() => window.print()} className="tactile-btn w-full bg-stone-900 text-white py-2 px-4 font-bold font-mono text-sm uppercase hover:bg-stone-800">
+                    Print PDF Summary
+                  </button>
+                </div>
+              </section>
+            </div>
+            
+          </div>
+          
+          {relatedTools.length > 0 && (
+            <section className="mt-16 pt-12 border-t-4 border-stone-800">
+              <h2 className="font-display font-bold text-2xl uppercase tracking-widest text-stone-900 mb-8">Related Tools</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {relatedTools.map(t => (
+                  <ToolCard key={t.id} tool={t} />
+                ))}
+              </div>
+            </section>
+          )}
 
         </div>
       </div>

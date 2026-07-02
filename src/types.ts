@@ -17,6 +17,9 @@ export interface Tool {
   primaryOutcome: string;
   fields?: CalcField[];
   calcFn?: (values: Record<string, any>) => any;
+  howItWorks?: string[];
+  definitions?: { term: string; definition: string }[];
+  faqs?: { question: string; answer: string }[];
 }
 
 export interface Category {

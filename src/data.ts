@@ -39,7 +39,20 @@ export const tools: Tool[] = [
           'Integration Costs': formatCurrency(integrationCost)
         }
       };
-    }
+    },
+    howItWorks: [
+      'Select the core complexity of your application (Basic, Moderate, Advanced).',
+      'Choose whether the app will run on Web, Mobile, or both platforms.',
+      'Estimate the number of external integration points (e.g., weather API, John Deere API).'
+    ],
+    definitions: [
+      { term: 'Integration Points', definition: 'Connections to external APIs or existing farm management software.' },
+      { term: 'Target Platforms', definition: 'The environments where your app will operate natively.' }
+    ],
+    faqs: [
+      { question: 'Does this include hosting costs?', answer: 'No, this only estimates the upfront build/development costs. Hosting is calculated separately in the Cloud Connectivity Calculator.' },
+      { question: 'What is considered an "Advanced" app?', answer: 'Advanced apps usually involve real-time map tracking, machine learning models, or complex multi-user permission systems.' }
+    ]
   },
   {
     id: 'automation-budget-estimator',
