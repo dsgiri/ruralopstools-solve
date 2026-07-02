@@ -19,7 +19,6 @@ import { Portfolio } from './pages/Portfolio';
 import { NotFound } from './pages/NotFound';
 import { AnalyticsTracker } from './components/AnalyticsTracker';
 import { CookieBanner } from './components/CookieBanner';
-import { AdContainer } from './components/AdContainer';
 
 // Simple scroll-to-hash wrapper 
 function ScrollToHashElement() {
@@ -50,11 +49,6 @@ export default function App() {
       <div className="min-h-screen flex flex-col font-sans text-stone-900 overflow-x-hidden w-full">
         <Navigation />
         
-        {/* Top Header Ad */}
-        <section aria-label="Top Ad Space" className="w-full max-w-7xl mx-auto px-4 sm:px-8 mt-4 hidden md:block">
-          <AdContainer slotId="HEADER_SLOT_1" className="min-h-[90px]" />
-        </section>
-
         <main id="main-content" className="flex-grow flex flex-col w-full relative" tabIndex={-1}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -70,11 +64,6 @@ export default function App() {
           </Routes>
         </main>
         
-        {/* Bottom Ad before footer */}
-        <section aria-label="Bottom Ad Space" className="w-full max-w-7xl mx-auto px-4 sm:px-8 mb-8 pb-4 border-b border-[#E5E7EB]">
-          <AdContainer slotId="FOOTER_SLOT_1" className="min-h-[90px]" />
-        </section>
-
         <Footer />
       </div>
       <CookieBanner />

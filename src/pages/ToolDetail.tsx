@@ -2,17 +2,54 @@ import { useParams, Link } from 'react-router-dom';
 import { tools } from '../data';
 import { useFavorites } from '../hooks/useFavorites';
 import { SEO } from '../components/SEO';
-import { AdContainer } from '../components/AdContainer';
 import { CalculatorDisclaimer } from '../components/CalculatorDisclaimer';
+import { useState, useEffect } from 'react';
 
 export function ToolDetail() {
   const { id } = useParams<{ id: string }>();
   const tool = tools.find(t => t.id === id);
   const { isFavorite, toggleFavorite } = useFavorites();
   
+  const [formValues, setFormValues] = useState<Record<string, any>>(() => {
+    const initial: Record<string, any> = {};
+    if (tool?.fields) {
+      tool.fields.forEach(f => {
+        initial[f.id] = f.defaultValue;
+      });
+    }
+    return initial;
+  });
+  const [calculation, setCalculation] = useState<any>(null);
+  const [isCompiled, setIsCompiled] = useState(false);
+  
+  useEffect(() => {
+    if (tool && tool.fields) {
+      const initial: Record<string, any> = {};
+      tool.fields.forEach(f => {
+        initial[f.id] = f.defaultValue;
+      });
+      setFormValues(initial);
+      setCalculation(null);
+      setIsCompiled(false);
+    }
+  }, [tool]);
+
   if (!tool) return null;
 
   const favorite = isFavorite(tool.id);
+
+  const handleInputChange = (fieldId: string, value: any) => {
+    setFormValues(prev => ({ ...prev, [fieldId]: value }));
+    setIsCompiled(false);
+  };
+
+  const handleCompile = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (tool.calcFn) {
+      setCalculation(tool.calcFn(formValues));
+      setIsCompiled(true);
+    }
+  };
 
   return (
     <div className="flex flex-col flex-grow py-16">
@@ -58,48 +95,86 @@ export function ToolDetail() {
             <div className="bg-white border-4 border-stone-800 shadow-[8px_8px_0px_#292524] p-6">
               <h3 className="font-bold text-lg font-display uppercase tracking-widest mb-6 border-b-2 border-stone-200 pb-2 text-stone-900">Parameters</h3>
               
-              <form className="space-y-5 opacity-50 pointer-events-none" onSubmit={(e) => e.preventDefault()}>
-                <div>
-                  <label htmlFor="scale-quantity" className="block text-xs font-bold font-mono text-stone-600 uppercase mb-2">Scale / Quantity</label>
-                  <input type="number" id="scale-quantity" className="w-full border-2 border-stone-800 bg-stone-100 rounded-sm py-2 px-3 focus:outline-none min-h-[48px] text-sm font-bold shadow-[2px_2px_0px_#292524]" defaultValue={50} />
-                </div>
-                <div>
-                  <label htmlFor="assumption-scenario" className="block text-xs font-bold font-mono text-stone-600 uppercase mb-2">Assumption Scenario</label>
-                  <select id="assumption-scenario" className="w-full border-2 border-stone-800 bg-stone-100 rounded-sm py-2 px-3 focus:outline-none min-h-[48px] text-sm font-bold shadow-[2px_2px_0px_#292524]">
-                    <option>Conservative</option>
-                    <option>Balanced</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="time-horizon" className="block text-xs font-bold font-mono text-stone-600 uppercase mb-2">Time Horizon</label>
-                  <input type="range" id="time-horizon" className="w-full" min="1" max="10" defaultValue="5" />
-                </div>
+              <form className="space-y-5" onSubmit={handleCompile}>
+                {tool.fields?.map((field) => (
+                  <div key={field.id}>
+                    <label htmlFor={field.id} className="block text-xs font-bold font-mono text-stone-600 uppercase mb-2">
+                      {field.label}
+                      {field.type === 'range' && <span className="ml-2 text-stone-900 bg-stone-200 px-1 py-0.5 rounded-sm">{formValues[field.id]}</span>}
+                    </label>
+                    {field.type === 'select' ? (
+                      <select 
+                        id={field.id}
+                        value={formValues[field.id] || ''}
+                        onChange={(e) => handleInputChange(field.id, e.target.value)}
+                        className="w-full border-2 border-stone-800 bg-stone-100 rounded-sm py-2 px-3 focus:outline-none min-h-[48px] text-sm font-bold shadow-[2px_2px_0px_#292524]"
+                      >
+                        {field.options?.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                      </select>
+                    ) : (
+                      <input 
+                        type={field.type} 
+                        id={field.id}
+                        min={field.min}
+                        max={field.max}
+                        step={field.step}
+                        value={formValues[field.id] || ''}
+                        onChange={(e) => handleInputChange(field.id, field.type === 'number' || field.type === 'range' ? Number(e.target.value) : e.target.value)}
+                        className={`w-full ${field.type === 'range' ? '' : 'border-2 border-stone-800 bg-stone-100 rounded-sm py-2 px-3 focus:outline-none min-h-[48px] text-sm font-bold shadow-[2px_2px_0px_#292524]'}`} 
+                      />
+                    )}
+                  </div>
+                ))}
+                
                 <button type="submit" className="tactile-btn w-full py-3 min-h-[48px] bg-orange-500 text-stone-900 rounded-sm text-sm font-bold mt-4 hover:bg-orange-600 focus:outline-none">Compile</button>
               </form>
             </div>
           </div>
           
-          <div className="lg:col-span-2 space-y-6">
-            <div className="notepad rounded-sm p-6 flex flex-col items-center justify-center min-h-[400px] text-center shadow-[8px_8px_0px_#292524] rotate-1 relative">
+          <div className="lg:col-span-3 space-y-6">
+            <div className="notepad rounded-sm p-6 flex flex-col min-h-[400px] shadow-[8px_8px_0px_#292524] rotate-1 relative bg-white">
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-red-400/50"></div>
-              <h3 className="text-2xl font-black font-display uppercase tracking-tight mb-2 text-stone-400 relative z-10">Awaiting Parameters</h3>
-              <p className="text-stone-500 font-medium max-w-sm text-sm italic relative z-10">Adjust inputs on the left and click Compile.</p>
+              
+              {!isCompiled ? (
+                <div className="flex-grow flex flex-col items-center justify-center text-center">
+                  <h3 className="text-2xl font-black font-display uppercase tracking-tight mb-2 text-stone-400 relative z-10">Awaiting Parameters</h3>
+                  <p className="text-stone-500 font-medium max-w-sm text-sm italic relative z-10">Adjust inputs on the left and click Compile.</p>
+                </div>
+              ) : (
+                <div className="flex-grow pl-8 relative z-10 w-full pt-4">
+                  <h2 className="text-xl font-bold font-mono uppercase text-stone-500 mb-6 border-b-2 border-stone-200 pb-2">Results: {tool.title}</h2>
+                  
+                  <div className="bg-stone-50 border-4 border-stone-800 p-6 shadow-[4px_4px_0px_#292524] mb-8 inline-block min-w-[300px]">
+                    <div className="text-sm font-bold uppercase tracking-widest text-stone-500 mb-2">{tool.primaryOutcome}</div>
+                    <div className="text-4xl lg:text-5xl font-black font-display text-orange-600">{calculation?.result}</div>
+                  </div>
+
+                  {calculation?.breakdown && (
+                    <div className="mt-8">
+                      <h3 className="text-lg font-bold font-display uppercase tracking-widest mb-4 border-b-2 border-stone-200 pb-2 inline-block">Breakdown</h3>
+                      <ul className="space-y-4">
+                        {Object.entries(calculation.breakdown).map(([key, value]) => (
+                          <li key={key} className="flex justify-between items-end border-b-2 border-stone-100 pb-2 max-w-md">
+                            <span className="font-mono text-sm font-bold text-stone-600">{key}</span>
+                            <span className="font-mono font-bold text-stone-900">{value as React.ReactNode}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="mt-12 pt-6 border-t-2 border-stone-200">
+                    <Link to="/#suite" className="tactile-btn inline-block bg-stone-900 text-white px-6 py-3 font-bold text-sm uppercase tracking-widest hover:bg-stone-800 focus:outline-none">
+                      Get Required Hardware &rarr;
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
             
             <CalculatorDisclaimer className="!mt-8 shadow-[4px_4px_0px_#292524] border-2 border-stone-800 bg-[#FEF9C3]" />
-            
-            <div className="border-l-4 border-orange-600 pl-4 py-2 mt-4">
-              <h4 className="text-sm font-bold uppercase mb-1 text-stone-900">Placeholder Notice</h4>
-              <p className="text-xs text-stone-600 font-medium italic leading-relaxed">
-                This is a placeholder interface for the calculation engine. Actual models are loaded from the master repository.
-              </p>
-            </div>
           </div>
 
-          <div className="lg:col-span-1 hidden lg:block">
-            {/* Sidebar Ad Container */}
-            <AdContainer slotId="SIDEBAR_SLOT_1" format="vertical" className="min-h-[600px] w-full bg-transparent border-0" />
-          </div>
         </div>
       </div>
     </div>

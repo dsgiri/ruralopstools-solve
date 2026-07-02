@@ -2,7 +2,6 @@ import { tools } from '../data';
 import { ToolCard } from '../components/ToolCard';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { AdContainer } from '../components/AdContainer';
 import { CalculatorDisclaimer } from '../components/CalculatorDisclaimer';
 
 export function Home() {
@@ -65,11 +64,6 @@ export function Home() {
         </div>
       </section>
       
-      {/* Mid-page Responsive Ad placement */}
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 mb-4">
-        <AdContainer slotId="IN_CONTENT_SLOT_1" />
-      </div>
-
       {/* The Tool Wall */}
       <section id="suite" className="max-w-7xl mx-auto px-6 md:px-8 py-16 border-t-4 border-stone-800 w-full">
         <div className="max-w-3xl mb-12 pt-8">

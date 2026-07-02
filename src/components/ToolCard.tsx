@@ -36,7 +36,7 @@ export function ToolCard({ tool }: ToolCardProps) {
                 window.gtag('event', 'click', { element: 'favorite_button', tool_id: tool.id });
               }
             }}
-            className={`transition-colors focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] rounded-full z-10 ${
+            className={`transition-colors focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] rounded-full z-20 relative ${
               favorite ? 'text-red-500' : 'text-stone-300 hover:text-red-500'
             }`}
             aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
@@ -65,7 +65,7 @@ export function ToolCard({ tool }: ToolCardProps) {
               window.gtag('event', 'click', { element: 'launch_tool_button', tool_id: tool.id });
             }
           }}
-          className="font-mono font-bold text-sm text-orange-600 flex items-center gap-2 z-10 relative after:absolute after:inset-0"
+          className="font-mono font-bold text-sm text-orange-600 flex items-center gap-2 z-10 before:absolute before:inset-0"
           aria-label={`Open Manual for ${tool.title}`}
         >
           Open Tool <span className="group-hover:translate-x-2 transition-transform">→</span>
