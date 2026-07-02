@@ -78,7 +78,19 @@ export const tools: Tool[] = [
           'Software / Setup': formatCurrency(total * 0.3)
         }
       };
-    }
+    },
+    howItWorks: [
+      'Enter the project area in acres to establish a baseline scale.',
+      'Select the primary automation type being deployed (Irrigation, Feeding, etc.).',
+      'Target a realistic labor savings percentage to calculate the complexity multiplier.'
+    ],
+    definitions: [
+      { term: 'Hardware / Install', definition: 'The physical equipment and labor required to get the system physically running.' },
+      { term: 'Software / Setup', definition: 'Configuration, subscription fees, and integration services required for operation.' }
+    ],
+    faqs: [
+      { question: 'Why does labor savings affect the cost?', answer: 'Achieving higher labor savings typically requires more advanced sensors, complex software rules, and higher precision hardware.' }
+    ]
   },
   {
     id: 'sensor-network-cost',
@@ -104,7 +116,19 @@ export const tools: Tool[] = [
           'Gateways': formatCurrency(gateways * costPerGateway)
         }
       };
-    }
+    },
+    howItWorks: [
+      'Enter the total number of sensors required for your deployment.',
+      'Select the complexity of the sensors (basic environmental vs. advanced agronomic).',
+      'Input the number of gateways needed to backhaul the data to the cloud.'
+    ],
+    definitions: [
+      { term: 'Gateway', definition: 'A centralized hub that collects data from local sensors (via LoRaWAN or Bluetooth) and sends it to the internet.' },
+      { term: 'Basic Sensor', definition: 'Simple, low-cost sensors measuring ambient metrics like air temperature and humidity.' }
+    ],
+    faqs: [
+      { question: 'How many sensors can one gateway handle?', answer: 'A standard LoRaWAN gateway can easily handle hundreds of sensors, provided they are within line-of-sight range.' }
+    ]
   },
   {
     id: 'connectivity-cloud-cost',
@@ -137,7 +161,19 @@ export const tools: Tool[] = [
           'Cloud Hosting': formatCurrency(cloudBase) + '/mo'
         }
       };
-    }
+    },
+    howItWorks: [
+      'Enter the number of active, connected devices in your fleet.',
+      'Select the primary backhaul connection type for these devices.',
+      'Choose the data frequency to determine cloud hosting and processing overhead.'
+    ],
+    definitions: [
+      { term: 'OPEX', definition: 'Operating Expenses; the ongoing costs required to keep the system running monthly.' },
+      { term: 'LoRaWAN', definition: 'Long Range Wide Area Network. A low-power networking protocol ideal for battery-operated sensors.' }
+    ],
+    faqs: [
+      { question: 'Why is cellular more expensive than LoRaWAN?', answer: 'Cellular requires a SIM card and a carrier subscription per device, whereas LoRaWAN uses unlicensed spectrum with a shared backhaul gateway.' }
+    ]
   },
   {
     id: 'maintenance-cost-planner',
@@ -163,7 +199,19 @@ export const tools: Tool[] = [
           'Labor (40%)': formatCurrency(total * 0.4) + '/yr'
         }
       };
-    }
+    },
+    howItWorks: [
+      'Input the total upfront capital deployed for your hardware.',
+      'Select the harshness of the environment where the hardware operates.',
+      'The calculator estimates a standard run rate for parts and technician labor based on wear and tear.'
+    ],
+    definitions: [
+      { term: 'Run Rate', definition: 'The forecasted annualized cost of keeping the hardware operational.' },
+      { term: 'Harsh Environment', definition: 'Outdoor agricultural settings exposed to UV, moisture, dust, or corrosive chemicals.' }
+    ],
+    faqs: [
+      { question: 'Is labor included in these estimates?', answer: 'Yes, typical maintenance budgeting sets aside 40% of the maintenance pool for technician labor and 60% for spare parts.' }
+    ]
   },
   {
     id: 'build-vs-buy-comparison',
@@ -194,7 +242,20 @@ export const tools: Tool[] = [
           [`Build TCO (${years} Yrs)`]: formatCurrency(buildTotal)
         }
       };
-    }
+    },
+    howItWorks: [
+      'Input the monthly cost of an off-the-shelf SaaS alternative.',
+      'Estimate the upfront capital required to build a custom solution.',
+      'Provide the expected monthly maintenance cost to keep the custom build running.',
+      'Select the time horizon to calculate the break-even point and Total Cost of Ownership (TCO).'
+    ],
+    definitions: [
+      { term: 'SaaS', definition: 'Software as a Service. Licensing an existing platform for a monthly fee.' },
+      { term: 'Custom Build', definition: 'Engineering a proprietary software solution tailored specifically to your operation.' }
+    ],
+    faqs: [
+      { question: 'Does a custom build always win over long horizons?', answer: 'Often yes on paper, but custom builds carry execution risk, security liabilities, and developer turnover risks that SaaS avoids.' }
+    ]
   },
   {
     id: 'tco-calculator',
@@ -229,7 +290,20 @@ export const tools: Tool[] = [
           'Lifetime OPEX': formatCurrency(totalOpex)
         }
       };
-    }
+    },
+    howItWorks: [
+      'Enter the initial capital expenditure for the technology.',
+      'Input the standard monthly operating expense (subscriptions, data, basic upkeep).',
+      'Select the expected lifespan of the investment.',
+      'Set an annual inflation rate to account for rising operational costs over time.'
+    ],
+    definitions: [
+      { term: 'CAPEX', definition: 'Capital Expenditure. The upfront cost to purchase and install the system.' },
+      { term: 'Lifecycle Cost', definition: 'The true total cost over the absolute lifespan of the asset, including inflation.' }
+    ],
+    faqs: [
+      { question: 'Why include inflation?', answer: 'Over a 5 to 10 year lifespan, compounding inflation significantly increases the nominal cost of subscription fees and labor.' }
+    ]
   },
   {
     id: 'smart-farm-roi',
@@ -264,7 +338,20 @@ export const tools: Tool[] = [
           'Annual Financial Benefit': formatCurrency(totalAnnualBenefit)
         }
       };
-    }
+    },
+    howItWorks: [
+      'Enter the total cost of the installed automation or sensor system.',
+      'Estimate the annual dollar value of labor saved by the system.',
+      'Estimate the annual dollar value of yield protected or increased by the system.',
+      'The tool calculates how many years it takes for the system to pay for itself.'
+    ],
+    definitions: [
+      { term: 'Payback Period', definition: 'The time required to recover the cost of an investment through financial benefits.' },
+      { term: 'Yield Value Increase', definition: 'Financial gain from producing more crop, reducing shrinkage, or improving quality grades.' }
+    ],
+    faqs: [
+      { question: 'What is a good payback period?', answer: 'For agricultural technology, a payback period of under 3 years is generally considered an excellent investment.' }
+    ]
   },
   {
     id: 'water-check-planner',

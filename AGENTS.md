@@ -95,15 +95,46 @@ Avoid broad, speculative rewrites of the codebase. Build one page, tool, or feat
 - Check that no placeholder text (e.g., "Lorem ipsum") remains.
 - Check basic accessibility (color contrast, alt text on images).
 
-## Safety and Change Management
-- Ask before deleting major files.
-- Ask before changing deployment configurations.
-- Ask before large dependency additions.
-- Ask before schema or data model migrations.
-- Do not expose secrets or API keys.
-- Do not commit generated credentials.
-- Do not assume production infrastructure details.
-- Avoid editing unrelated content during focused tasks.
+## Safety and Change Control
+
+### Hard Stop Rules
+- No silent side effects. No stealth cleanup. No opportunistic refactors.
+- Never remove “unused” code, files, styles, content, or assets unless the user explicitly asked for cleanup.
+- Never edit unrelated files while working on a focused request.
+- If an existing implementation looks wrong but is outside the requested scope, do not silently “fix” it. Leave a note instead.
+- Do not remove comments, docs, or content unless directly relevant to the task.
+- Protect user-authored work by default. Preserving existing work is more important than moving fast.
+
+### Approval Required Before Proceeding
+Do not proceed without explicit user consent for any of the following destructive or risky actions:
+- Deleting files.
+- Overwriting or replacing an existing file wholesale.
+- Renaming or moving files/folders.
+- Performing destructive or broad refactors.
+- Replacing page copy.
+- Updating dependencies, lockfiles, package managers, build tooling, or config files.
+- Changing schema or data models.
+- Changing authentication, billing, analytics, SEO, or routing behavior.
+- Changing deployment or environment configurations.
+- Any task that may cause data loss, content loss, layout regression, or behavior regression.
+- If the safest path is unclear, stop and ask for approval before proceeding.
+
+### Safe Editing Rules
+- Make the smallest correct change. Never rewrite large sections of a file if a targeted edit can solve the task.
+- Preserve existing copy, assets, and structure unless the task explicitly calls for replacement.
+- Prefer additive changes over destructive changes.
+- Edit in place when possible. Minimize edits and preserve formatting where possible when touching a sensitive file.
+- Avoid unrelated edits.
+- Leave notes instead of fixing out-of-scope issues.
+- If replacing a file is truly necessary, create a backup copy first unless the user explicitly says not to.
+- Prefer reversible changes.
+
+### Change Summary Rules
+Before making risky changes, summarize:
+- State which files will be touched.
+- State whether any existing content will be replaced.
+- State whether user approval is needed based on the rules above.
+- State what risks exist before making the change.
 
 ## Prompting and Collaboration Rules
 - Expect detailed prompts and follow structured instructions carefully.
