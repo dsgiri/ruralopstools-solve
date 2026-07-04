@@ -19,7 +19,7 @@ export function Navigation() {
         <div className="flex min-h-[80px] justify-between items-center">
           <div className="flex-shrink-0 flex items-center gap-3">
             <NavLink to="/" className="text-2xl font-black tracking-widest font-display uppercase text-stone-800 focus:outline-none focus:ring-2 focus:ring-orange-600">
-              Solve<span className="text-orange-600">.RuralUtilityCost</span>
+              Solve<span className="text-orange-600">.RuralOpsTools</span>
             </NavLink>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-stone-700 items-center">

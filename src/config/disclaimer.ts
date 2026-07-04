@@ -11,7 +11,7 @@ export const DISCLAIMER_CONFIG = {
     {
       id: "risk",
       title: "2. Assumption of Risk",
-      text: "By using these calculators, you agree that Rural Utility Cost and its network of subdomains hold no liability for procurement decisions or financial outcomes resulting from these baseline estimates."
+      text: "By using these calculators, you agree that Rural Ops Tools and its network of subdomains hold no liability for procurement decisions or financial outcomes resulting from these baseline estimates."
     },
     {
       id: "professional-advice",
@@ -26,7 +26,7 @@ export const DISCLAIMER_CONFIG = {
     {
       id: "shared-agreements",
       title: "5. Shared Agreements",
-      text: "As part of the Rural Utility Cost network, this site operates under the global Terms of Service and Privacy Policy defined on the master domain. By accessing this site, you accept the primary domain agreements."
+      text: "As part of the Rural Ops Tools network, this site operates under the global Terms of Service and Privacy Policy defined on the master domain. By accessing this site, you accept the primary domain agreements."
     }
   ]
 };

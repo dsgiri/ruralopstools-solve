@@ -1,7 +1,7 @@
 # AGENTS.md
 
 ## Purpose
-This repository builds niche digital tools and SEO landing pages for SOLVE.RURALUTILITYCOST.COM.
+This repository builds niche digital tools and SEO landing pages for SOLVE.RURALOPSTOOLS.COM.
 The business focuses on boring, underserved operational software and digital tools for farms, ranches, homesteads, and remote rural infrastructure.
 Products built here include tools like Water Check OS, Pump Trouble Logger, Remote Inspection Proof Tool, Freeze Event Planner, and Fence Fault Tracker, alongside related SEO landing pages.
 This file provides reusable, repository-level instructions to AI coding agents to ensure consistent, high-quality, and predictable execution.
@@ -227,7 +227,7 @@ The following sections consolidate all project requirements, design systems, and
 ### 1. Product Requirements (PRD)
 
 ## Overview
-Solve.RuralUtilityCost provides simple, offline-capable calculators and guides for agricultural utility cost estimation and IoT device hardware kits.
+Solve.RuralOpsTools provides simple, offline-capable calculators and guides for agricultural utility cost estimation and IoT device hardware kits.
 
 ## Features
 - Dynamic calculators with local storage support.
@@ -286,7 +286,7 @@ Solve.RuralUtilityCost provides simple, offline-capable calculators and guides f
 
 ### 6. Calculator Standardization Guide
 
-When developing or updating calculators for the Solve.RuralUtilityCost platform, adhere to the following standards to ensure consistency and mathematical reliability.
+When developing or updating calculators for the Solve.RuralOpsTools platform, adhere to the following standards to ensure consistency and mathematical reliability.
 
 ## 1. UI/UX Standards
 - **Input Fields**: Use rugged, high-contrast inputs. Example styles: `w-full border-2 border-stone-800 bg-stone-100 rounded-sm py-2 px-3 shadow-[2px_2px_0px_#292524]`.
@@ -311,7 +311,7 @@ Every calculator MUST include a "Bridge" action. Once a user calculates their wa
 
 ### 7. Online Calculator Layout and Standard
 
-This document outlines the ideal structure and layout standards for an online calculator page within the Solve.RuralUtilityCost ecosystem. All calculators ("The Math") must follow this top-to-bottom organization to ensure a consistent, rugged, and practical user experience.
+This document outlines the ideal structure and layout standards for an online calculator page within the Solve.RuralOpsTools ecosystem. All calculators ("The Math") must follow this top-to-bottom organization to ensure a consistent, rugged, and practical user experience.
 
 ## 1. Above the Fold (Immediate Access)
 - **Clear H1 Header**: State exactly what the calculator does in no-nonsense terms (e.g., "Water Pump Cost Calculator", "Sensor Network Cost").

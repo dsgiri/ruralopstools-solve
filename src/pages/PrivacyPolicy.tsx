@@ -5,8 +5,8 @@ export function PrivacyPolicy() {
   return (
     <div className="flex-grow py-16 px-4 sm:px-8">
       <SEO 
-        title="Privacy Policy | Rural Utility Cost" 
-        description="Privacy policy and data handling guidelines for the Rural Utility Cost platform." 
+        title="Privacy Policy | Rural Ops Tools" 
+        description="Privacy policy and data handling guidelines for the Rural Ops Tools platform." 
       />
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
@@ -61,7 +61,7 @@ export function PrivacyPolicy() {
           <section id="contact">
             <h2 className="text-lg font-black uppercase tracking-tighter mb-4 text-orange-600">5. Contact Us</h2>
             <p className="text-sm text-stone-700 leading-relaxed mb-4">
-              If you have any questions or concerns regarding this Privacy Policy or data handling across the Rural Utility Cost network, please reach out via our centralized Contact Us page.
+              If you have any questions or concerns regarding this Privacy Policy or data handling across the Rural Ops Tools network, please reach out via our centralized Contact Us page.
             </p>
           </section>
         </div>

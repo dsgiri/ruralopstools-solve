@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t-4 border-stone-800 bg-stone-900 text-stone-400 py-12 text-center mt-20 relative z-10 w-full shrink-0">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-2xl font-bold font-display text-white mb-2">Solve.RuralUtilityCost</h2>
+        <h2 className="text-2xl font-bold font-display text-white mb-2">Solve.RuralOpsTools</h2>
         <p className="text-sm font-medium mb-8">Practical tools for folks who fix things themselves.</p>
         
         <nav aria-label="Footer Navigation" className="mb-8">
@@ -21,8 +21,8 @@ export function Footer() {
         </nav>
         
         <div className="text-xs text-stone-500 font-mono space-y-2">
-          <p>Part of the <span className="font-bold text-stone-400">RuralUtilityCost.com</span> Ecosystem &copy; {new Date().getFullYear()}</p>
-          <a href="https://ruralutilitycost.com/disclaimer" className="block hover:text-stone-300 transition-colors max-w-2xl mx-auto">{DISCLAIMER_CONFIG.shortFooter}</a>
+          <p>Part of the <span className="font-bold text-stone-400">RuralOpsTools.com</span> Ecosystem &copy; {new Date().getFullYear()}</p>
+          <a href="https://ruralopstools.com/disclaimer" className="block hover:text-stone-300 transition-colors max-w-2xl mx-auto">{DISCLAIMER_CONFIG.shortFooter}</a>
         </div>
       </div>
     </footer>

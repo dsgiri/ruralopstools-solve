@@ -34,8 +34,8 @@ export function Portfolio() {
   return (
     <div className="flex flex-col flex-grow">
       <SEO 
-        title="Network Portfolio | Rural Utility Cost" 
-        description="Explore the full network of planning, budgeting, and estimation tools in the Rural Utility Cost ecosystem." 
+        title="Network Portfolio | Rural Ops Tools" 
+        description="Explore the full network of planning, budgeting, and estimation tools in the Rural Ops Tools ecosystem." 
       />
       
       {/* Header */}
@@ -45,7 +45,7 @@ export function Portfolio() {
             Ecosystem Network
           </h1>
           <p className="max-w-2xl text-base text-stone-400 font-medium pb-4">
-            The Rural Utility Cost platform consists of interconnected subdomains, 
+            The Rural Ops Tools platform consists of interconnected subdomains, 
             each dedicated to a specific area of agricultural and rural cost modeling.
           </p>
         </div>

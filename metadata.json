@@ -1,6 +1,6 @@
 {
   "name": "Solve",
-  "description": "IoT & Automation Cost Hub for Rural Utility Cost",
+  "description": "IoT & Automation Cost Hub for Rural Ops Tools",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

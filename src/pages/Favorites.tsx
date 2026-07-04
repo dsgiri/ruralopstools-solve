@@ -11,7 +11,7 @@ export function Favorites() {
   return (
     <div className="flex-grow py-12 px-4 sm:px-8">
       <SEO 
-        title="My Favorites | Solve | Rural Utility Cost" 
+        title="My Favorites | Solve | Rural Ops Tools" 
         description="Access your saved IoT and automation cost estimation tools." 
       />
       <div className="max-w-7xl mx-auto">

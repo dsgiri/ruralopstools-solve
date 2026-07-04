@@ -1,6 +1,6 @@
 # Calculator & Tools Standardization Guide
 
-This document outlines the ideal structure, layout standards, and mathematical integrity guidelines for online calculators ("The Math") within the Solve.RuralUtilityCost ecosystem. All calculators must follow this organization to ensure a consistent, rugged, and practical user experience.
+This document outlines the ideal structure, layout standards, and mathematical integrity guidelines for online calculators ("The Math") within the Solve.RuralOpsTools ecosystem. All calculators must follow this organization to ensure a consistent, rugged, and practical user experience.
 
 ## 1. Calculator Structure and Mathematical Integrity
 

@@ -6,7 +6,7 @@ export function NotFound() {
     <div className="flex-grow py-16 px-8 flex flex-col items-center justify-center">
       <SEO 
         title="404 - Page Not Found | Solve" 
-        description="The page you are looking for does not exist on Rural Utility Cost Solve hub." 
+        description="The page you are looking for does not exist on Rural Ops Tools Solve hub." 
       />
       <div className="text-center max-w-md">
         <h1 className="text-6xl font-black text-stone-900 mb-4 font-display">404</h1>

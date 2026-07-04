@@ -6,8 +6,8 @@ export function Disclaimer() {
   return (
     <div className="flex-grow py-16 px-4 sm:px-8">
       <SEO 
-        title={`${DISCLAIMER_CONFIG.legalPageTitle} | Rural Utility Cost`} 
-        description="Legal agreements, definitions, and model estimation disclaimers for the Rural Utility Cost platform." 
+        title={`${DISCLAIMER_CONFIG.legalPageTitle} | Rural Ops Tools`} 
+        description="Legal agreements, definitions, and model estimation disclaimers for the Rural Ops Tools platform." 
       />
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">

@@ -1,6 +1,6 @@
-# Solve.RuralUtilityCost
+# Solve.RuralOpsTools
 
-Welcome to **Solve**, a subdomain of the RuralUtilityCost ecosystem. This platform provides DIY Farm & Ranch Monitors, IoT cost estimators, and simple calculators to help operators find and fix farm utility leaks.
+Welcome to **Solve**, a subdomain of the RuralOpsTools ecosystem. This platform provides DIY Farm & Ranch Monitors, IoT cost estimators, and simple calculators to help operators find and fix farm utility leaks.
 
 ## Overview
 Solve is designed for agricultural professionals, farm managers, and rural utility users who need practical tools without the fluff. The platform is organized into three main areas:
@@ -44,4 +44,4 @@ The application utilizes a specific "Workbench" or "Tactile" UI design language 
    This produces static files in the `dist/` directory, ready to be served.
 
 ## Legal Disclaimer
-All tools, calculators, and models provided across the Rural Utility Cost network are intended for informational, estimation, and decision-support purposes only. They do not constitute professional financial, legal, engineering, or agronomic advice.
+All tools, calculators, and models provided across the Rural Ops Tools network are intended for informational, estimation, and decision-support purposes only. They do not constitute professional financial, legal, engineering, or agronomic advice.

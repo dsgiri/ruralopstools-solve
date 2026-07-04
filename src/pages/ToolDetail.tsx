@@ -71,7 +71,7 @@ export function ToolDetail() {
   return (
     <div className="flex flex-col flex-grow py-16">
       <SEO 
-        title={`${tool.title} | Solve | Rural Utility Cost`} 
+        title={`${tool.title} | Solve | Rural Ops Tools`} 
         description={tool.description}
         keywords={`${tool.category.toLowerCase()}, automation cost, farm technology calculator`}
       />

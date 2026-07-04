@@ -22,7 +22,7 @@ export function SEO({ title, description, url, keywords }: SEOProps) {
     };
 
     setMeta('description', description);
-    setMeta('author', 'Rural Utility Cost');
+    setMeta('author', 'Rural Ops Tools');
     if (keywords) {
       setMeta('keywords', keywords);
     }
@@ -36,7 +36,7 @@ export function SEO({ title, description, url, keywords }: SEOProps) {
     setMeta('twitter:title', title);
     setMeta('twitter:description', description);
 
-    const fullUrl = `https://solve.ruralutilitycost.com${url || window.location.pathname}`;
+    const fullUrl = `https://solve.ruralopstools.com${url || window.location.pathname}`;
     setMeta('og:url', fullUrl, true);
     
     let canonical = document.querySelector(`link[rel="canonical"]`);
@@ -63,7 +63,7 @@ export function SEO({ title, description, url, keywords }: SEOProps) {
       "url": fullUrl,
       "publisher": {
         "@type": "Organization",
-        "name": "Rural Utility Cost"
+        "name": "Rural Ops Tools"
       }
     });
 

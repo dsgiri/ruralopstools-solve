@@ -21,15 +21,15 @@ export function Contact() {
   return (
     <div className="flex-grow py-16 px-4 sm:px-8">
       <SEO 
-        title="Contact Us | Rural Utility Cost" 
-        description="Get in touch with the Rural Utility Cost team. We are here to help with questions about our estimation tools." 
+        title="Contact Us | Rural Ops Tools" 
+        description="Get in touch with the Rural Ops Tools team. We are here to help with questions about our estimation tools." 
       />
       <div className="max-w-5xl mx-auto">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-black text-stone-900 font-display uppercase tracking-tight mb-4">Contact Us</h1>
           <div className="w-16 h-2 bg-orange-600 mb-8 border-2 border-stone-800 shadow-[2px_2px_0px_#292524] -rotate-1"></div>
           <p className="text-base font-medium text-stone-700 leading-relaxed max-w-2xl">
-            Get in touch regarding the Rural Utility Cost platform or any of its subdomains.
+            Get in touch regarding the Rural Ops Tools platform or any of its subdomains.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export function Contact() {
                 <p className="text-sm font-medium text-stone-600 mb-4">
                   Noticed an error in a calculator's assumptions or want to suggest a new variable?
                 </p>
-                <a href="mailto:models@ruralutilitycost.com" className="font-mono text-sm font-bold text-orange-600 hover:text-orange-500 transition-colors">models@ruralutilitycost.com &rarr;</a>
+                <a href="mailto:models@ruralopstools.com" className="font-mono text-sm font-bold text-orange-600 hover:text-orange-500 transition-colors">models@ruralopstools.com &rarr;</a>
               </div>
             </div>
 
@@ -53,14 +53,14 @@ export function Contact() {
                 <p className="text-sm font-medium text-stone-600 mb-4">
                   For press, partnership, or general platform inquiries.
                 </p>
-                <a href="mailto:hello@ruralutilitycost.com" className="font-mono text-sm font-bold text-orange-600 hover:text-orange-500 transition-colors">hello@ruralutilitycost.com &rarr;</a>
+                <a href="mailto:hello@ruralopstools.com" className="font-mono text-sm font-bold text-orange-600 hover:text-orange-500 transition-colors">hello@ruralopstools.com &rarr;</a>
               </div>
             </div>
             
             <div className="border border-stone-300 p-6 bg-stone-100 mt-6 rounded-sm">
                <h3 className="text-xs font-black uppercase tracking-widest mb-2">Business Address</h3>
                <address className="text-sm text-gray-600 not-italic">
-                 Rural Utility Cost Ecosystem<br />
+                 Rural Ops Tools Ecosystem<br />
                  123 Technology Corridor<br />
                  Agriculture Tech District
                </address>

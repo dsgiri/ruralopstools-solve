@@ -11,9 +11,9 @@ export function Home() {
   return (
     <div className="flex flex-col flex-grow">
       <SEO 
-        title="Solve | DIY Farm & Ranch Monitors | Rural Utility Cost" 
+        title="Solve | DIY Farm & Ranch Monitors | Rural Ops Tools" 
         description="Grab a tool to find and fix your farm utility leaks. Estimate costs for IoT projects, farm automation, and sensor deployments." 
-        keywords="IoT cost estimator, sensor network budgeting, rural utility cost, farm automation cost, diy monitors"
+        keywords="IoT cost estimator, sensor network budgeting, rural ops tools, farm automation cost, diy monitors"
       />
       
       {/* Top Alert Notification Bar */}
