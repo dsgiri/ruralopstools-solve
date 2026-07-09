@@ -1,6 +1,6 @@
 export const DISCLAIMER_CONFIG = {
-  shortFooter: "Calculators provide estimates for decision support only. Not professional advice.",
-  calculatorDefault: "Disclaimer: These figures are estimates based on standard assumptions and user inputs. This tool is for informational purposes only and does not replace professional financial, legal, engineering, or agricultural advice. We disclaim all liability for decisions, costs, losses, or damages arising from reliance on these results. Please consult qualified local professionals or certified advisors for guidance specific to your situation.",
+  shortFooter: "Practical tools and rugged monitors for folks who fix things themselves. Part of the RuralOpsTools network.",
+  calculatorDefault: "The numbers you see here are estimates based on standard rural operating assumptions and the data you enter. Solve is a diagnostic guide, not a replacement for professional engineering, accounting, or agricultural advice. Every property is different, so use these tools to spot the problem, but trust your own judgment (or your local pros) before breaking ground or spending money. We aren't liable for costs, damages, or decisions made based on these estimates.",
   legalPageTitle: "Legal & Disclaimer",
   fullDisclaimerSections: [
     {

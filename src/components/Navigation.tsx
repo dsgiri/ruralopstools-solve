@@ -23,13 +23,13 @@ export function Navigation() {
               Solve<span className="text-orange-600">.RuralOpsTools</span>
             </NavLink>
           </div>
-          <div className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-stone-700 items-center">
+          <div className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-stone-700 items-center font-mono">
             {links.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `transition-colors py-2 min-h-[48px] flex items-center border-b-2 ${
+                  `transition-colors py-2 min-h-[48px] flex items-center border-b-4 ${
                     isActive 
                       ? 'text-orange-600 border-orange-600'
                       : 'border-transparent hover:text-orange-600 hover:border-orange-600'

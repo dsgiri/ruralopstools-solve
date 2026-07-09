@@ -1,8 +1,8 @@
 export const FOOTER_LINKS = [
-  { name: 'Network', url: '/portfolio' },
-  { name: 'About Us', url: 'https://ruralopstools.com/about' },
-  { name: 'Contact Us', url: 'https://ruralopstools.com/contact' },
-  { name: 'Privacy Policy', url: 'https://ruralopstools.com/privacy-policy' },
-  { name: 'Terms of Use', url: 'https://ruralopstools.com/terms-of-use' },
-  { name: 'Disclaimer', url: 'https://ruralopstools.com/disclaimer' }
+  { name: 'About Solve', url: '/about' },
+  { name: 'Contact Us', url: '/contact' },
+  { name: 'Plain-English Privacy', url: '/privacy-policy' },
+  { name: 'Terms of Use', url: '/terms-of-use' },
+  { name: 'Full Disclaimer', url: '/disclaimer' },
+  { name: 'RuralOpsTools Network', url: 'https://ruralopstools.com' }
 ];

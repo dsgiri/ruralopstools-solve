@@ -20,6 +20,8 @@ import { NotFound } from './pages/NotFound';
 import { Calculators } from './pages/Calculators';
 import { AnalyticsTracker } from './components/AnalyticsTracker';
 import { CookieBanner } from './components/CookieBanner';
+import { FixHub } from './pages/FixHub';
+import { KitsHub } from './pages/KitsHub';
 
 // Simple scroll-to-hash wrapper 
 function ScrollToHashElement() {
@@ -70,8 +72,8 @@ export default function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-use" element={<TermsOfUse />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
-            <Route path="/fix" element={<Navigate to="/#diagnostics" replace />} />
-            <Route path="/kits" element={<Navigate to="/#kits" replace />} />
+            <Route path="/fix" element={<FixHub />} />
+            <Route path="/kits" element={<KitsHub />} />
             <Route path="/calculators" element={<Calculators />} />
             <Route path="/tool/:id" element={<ToolDetail />} />
             <Route path="/portfolio" element={<Portfolio />} />

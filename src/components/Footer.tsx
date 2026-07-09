@@ -1,5 +1,6 @@
 import { DISCLAIMER_CONFIG } from '../config/disclaimer';
 import { FOOTER_LINKS } from '../config/footer';
+import { NavLink } from 'react-router-dom';
 
 export function Footer() {
   return (
@@ -10,19 +11,28 @@ export function Footer() {
         
         <nav aria-label="Footer Navigation" className="mb-8">
           <ul className="flex flex-wrap justify-center gap-4 sm:gap-6 m-0 p-0 list-none text-center text-xs font-bold uppercase tracking-wider text-stone-300">
-            {FOOTER_LINKS.map(link => (
-              <li key={link.name}>
-                <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:text-white py-2 inline-block transition-colors">
-                  {link.name}
-                </a>
-              </li>
-            ))}
+            {FOOTER_LINKS.map(link => {
+              const isExternal = link.url.startsWith('http');
+              return (
+                <li key={link.name}>
+                  {isExternal ? (
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:text-white py-2 inline-block transition-colors">
+                      {link.name}
+                    </a>
+                  ) : (
+                    <NavLink to={link.url} className="hover:text-white py-2 inline-block transition-colors">
+                      {link.name}
+                    </NavLink>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
         
         <div className="text-xs text-stone-500 font-mono space-y-2">
           <p>Part of the <span className="font-bold text-stone-400">RuralOpsTools.com</span> Ecosystem &copy; {new Date().getFullYear()}</p>
-          <a href="https://ruralopstools.com/disclaimer" className="block hover:text-stone-300 transition-colors max-w-2xl mx-auto">{DISCLAIMER_CONFIG.shortFooter}</a>
+          <NavLink to="/disclaimer" className="block hover:text-stone-300 transition-colors max-w-2xl mx-auto">{DISCLAIMER_CONFIG.shortFooter}</NavLink>
         </div>
       </div>
     </footer>

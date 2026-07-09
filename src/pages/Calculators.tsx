@@ -39,10 +39,10 @@ export function Calculators() {
             All Calculators
         </div>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900 font-display">
-            Run the numbers.
+            Estimate the damage. Plan the fix.
         </h1>
         <p className="text-lg text-stone-700 max-w-2xl font-medium">
-            Use our scratchpad to figure out exactly how much cash is slipping through the cracks. Once we find the problem, we'll hand you the exact tool to fix it.
+            Use our field calculators to see exactly how much a problem is costing you and what it takes to solve it. Don't guess—run the numbers.
         </p>
       </header>
 
