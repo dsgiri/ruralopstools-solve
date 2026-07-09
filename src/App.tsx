@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter, Routes, Route, ScrollRestoration, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, ScrollRestoration, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -17,6 +17,7 @@ import { Disclaimer } from './pages/Disclaimer';
 import { ToolDetail } from './pages/ToolDetail';
 import { Portfolio } from './pages/Portfolio';
 import { NotFound } from './pages/NotFound';
+import { Calculators } from './pages/Calculators';
 import { AnalyticsTracker } from './components/AnalyticsTracker';
 import { CookieBanner } from './components/CookieBanner';
 
@@ -69,6 +70,9 @@ export default function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-use" element={<TermsOfUse />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/fix" element={<Navigate to="/#diagnostics" replace />} />
+            <Route path="/kits" element={<Navigate to="/#kits" replace />} />
+            <Route path="/calculators" element={<Calculators />} />
             <Route path="/tool/:id" element={<ToolDetail />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="*" element={<NotFound />} />

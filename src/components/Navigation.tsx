@@ -6,8 +6,9 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { name: 'Solve', path: '/' },
-    { name: 'Network', path: '/portfolio' },
+    { name: 'Fix', path: '/fix' },
+    { name: 'Kits', path: '/kits' },
+    { name: 'Calculators', path: '/calculators' },
     { name: 'Favorites', path: '/favorites' },
   ];
 

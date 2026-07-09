@@ -12,7 +12,7 @@ export function Footer() {
           <ul className="flex flex-wrap justify-center gap-4 sm:gap-6 m-0 p-0 list-none text-center text-xs font-bold uppercase tracking-wider text-stone-300">
             {FOOTER_LINKS.map(link => (
               <li key={link.name}>
-                <a href={link.url} className="hover:text-white py-2 inline-block transition-colors">
+                <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:text-white py-2 inline-block transition-colors">
                   {link.name}
                 </a>
               </li>

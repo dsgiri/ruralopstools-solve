@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 interface ToolCardProps {
   tool: Tool;
   key?: React.Key;
+  ctaLabel?: string;
 }
 
-export function ToolCard({ tool }: ToolCardProps) {
+export function ToolCard({ tool, ctaLabel }: ToolCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorite = isFavorite(tool.id);
 
@@ -68,7 +69,7 @@ export function ToolCard({ tool }: ToolCardProps) {
           className="font-mono font-bold text-sm text-orange-600 flex items-center gap-2 z-10 before:absolute before:inset-0"
           aria-label={`Open Manual for ${tool.title}`}
         >
-          Open Tool <span className="group-hover:translate-x-2 transition-transform">→</span>
+          {ctaLabel || 'Open Tool'} <span className="group-hover:translate-x-2 transition-transform">→</span>
         </Link>
       </div>
     </article>
