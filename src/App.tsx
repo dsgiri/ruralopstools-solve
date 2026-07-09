@@ -23,6 +23,9 @@ import { CookieBanner } from './components/CookieBanner';
 import { FixHub } from './pages/FixHub';
 import { KitsHub } from './pages/KitsHub';
 
+import { ArticlesHub } from './pages/ArticlesHub';
+import { ArticleDetail } from './pages/ArticleDetail';
+
 // Simple scroll-to-hash wrapper 
 function ScrollToHashElement() {
   const { hash } = useLocation();
@@ -75,6 +78,8 @@ export default function App() {
             <Route path="/fix" element={<FixHub />} />
             <Route path="/kits" element={<KitsHub />} />
             <Route path="/calculators" element={<Calculators />} />
+            <Route path="/articles" element={<ArticlesHub />} />
+            <Route path="/articles/:slug" element={<ArticleDetail />} />
             <Route path="/tool/:id" element={<ToolDetail />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="*" element={<NotFound />} />
